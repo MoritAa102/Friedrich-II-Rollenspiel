@@ -2,27 +2,23 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Friedrich II – Co-Op Story</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Friedrich II – Co-Op Rätsel</title>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
   <div id="app">
     <header class="topbar">
-      <div class="title">Friedrich II – Co-Op Story (10–15 Min)</div>
+      <div class="title">Friedrich II – Co-Op Rätsel (10–15 Min)</div>
       <div id="netStatus" class="pill">offline</div>
     </header>
 
-    <section id="lobby" class="panel">
-      <h1>Lobby</h1>
+    <!-- Global: Raum erstellen / beitreten -->
+    <section id="entry" class="panel">
+      <h1>Einsteigen</h1>
       <p class="muted">
-        WASD / Pfeile = laufen · E = interagieren · Ziel: Gemeinsam alle Kapitel lösen.
+        Tipp: Eine Person erstellt den Raum und teilt den Code.
       </p>
-
-      <label>
-        Dein Name
-        <input id="nameInput" maxlength="18" placeholder="z.B. Alex" />
-      </label>
 
       <div class="row">
         <button id="createBtn">Raum erstellen</button>
@@ -30,22 +26,74 @@
         <button id="joinBtn">Beitreten</button>
       </div>
 
-      <div class="muted small">
-        Tipp: Einer erstellt den Raum und sagt den Code der Klasse.
-      </div>
-      <div id="lobbyMsg" class="msg"></div>
+      <div id="entryMsg" class="msg"></div>
     </section>
 
     <section id="gameWrap" class="hidden">
-      <canvas id="game" width="960" height="540"></canvas>
+      <canvas id="game"></canvas>
 
+      <!-- HUD -->
       <div id="hud" class="hud">
         <div class="hud-left">
           <div id="roomLabel" class="pill"></div>
+          <div id="phaseLabel" class="pill"></div>
           <div id="chapterLabel" class="pill"></div>
         </div>
         <div class="hud-right">
           <button id="leaveBtn" class="ghost">Verlassen</button>
+        </div>
+      </div>
+
+      <!-- Room Lobby (im Raum, vor Spielstart) -->
+      <div id="roomLobby" class="roomlobby hidden">
+        <div class="roomlobby-card">
+          <h2>Room-Lobby</h2>
+          <p class="muted small">Name & Avatar auswählen. Host startet dann das Spiel.</p>
+
+          <label>
+            Dein Name
+            <input id="nameInput" maxlength="18" placeholder="z.B. Alex" />
+          </label>
+
+          <div class="avatarBox">
+            <div class="muted small">Avatar-Icon</div>
+            <div id="avatarIcons" class="avatarRow"></div>
+
+            <div class="muted small" style="margin-top:10px;">Avatar-Farbe</div>
+            <div id="avatarColors" class="avatarRow"></div>
+          </div>
+
+          <div class="row" style="justify-content:space-between; margin-top:12px;">
+            <button id="saveProfileBtn">Speichern</button>
+            <button id="startBtn" class="start hidden">▶ Start (Host)</button>
+          </div>
+
+          <div class="muted small" style="margin-top:10px;">Spieler im Raum:</div>
+          <div id="playerList" class="playerList"></div>
+        </div>
+      </div>
+
+      <!-- Chat -->
+      <div id="chat" class="chat hidden">
+        <div class="chat-head">
+          <select id="chatTo"></select>
+          <button id="chatClose" class="ghost">✕</button>
+        </div>
+        <div id="chatMsgs" class="chat-msgs"></div>
+        <div class="chat-send">
+          <input id="chatInput" maxlength="180" placeholder="Nachricht…" />
+          <button id="chatSend">Senden</button>
+        </div>
+      </div>
+
+      <!-- Touch Controls (Handy/iPad) -->
+      <div id="touch" class="touch hidden">
+        <div id="joy" class="joy">
+          <div id="joyKnob" class="joy-knob"></div>
+        </div>
+        <div class="touchRight">
+          <button id="btnInteract" class="touchBtn">E</button>
+          <button id="btnChat" class="touchBtn">Chat</button>
         </div>
       </div>
 
