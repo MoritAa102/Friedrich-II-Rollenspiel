@@ -12,13 +12,13 @@ import {
 
 // 1) HIER Firebase Config einfügen (aus Firebase Console)
 const firebaseConfig = {
-  apiKey: "DEIN_API_KEY",
-  authDomain: "DEIN_AUTH_DOMAIN",
-  databaseURL: "DEINE_DATABASE_URL",
-  projectId: "DEIN_PROJECT_ID",
-  storageBucket: "DEIN_STORAGE_BUCKET",
-  messagingSenderId: "DEIN_SENDER_ID",
-  appId: "DEIN_APP_ID"
+  apiKey: "AIzaSyAMhMpk1OAgNPmhVG5F8W9fIAnODIPBvds",
+  authDomain: "friedrich-ii-2.firebaseapp.com",
+  databaseURL: "https://friedrich-ii-2-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "friedrich-ii-2",
+  storageBucket: "friedrich-ii-2.firebasestorage.app",
+  messagingSenderId: "1052196901438",
+  appId: "1:1052196901438:web:7d8424071a5b32e207376f"
 };
 
 initFirebase(firebaseConfig);
