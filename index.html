@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Friedrich II – Co-Op Story</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="title">Friedrich II – Co-Op Story (10–15 Min)</div>
+      <div id="netStatus" class="pill">offline</div>
+    </header>
+
+    <section id="lobby" class="panel">
+      <h1>Lobby</h1>
+      <p class="muted">
+        WASD / Pfeile = laufen · E = interagieren · Ziel: Gemeinsam alle Kapitel lösen.
+      </p>
+
+      <label>
+        Dein Name
+        <input id="nameInput" maxlength="18" placeholder="z.B. Alex" />
+      </label>
+
+      <div class="row">
+        <button id="createBtn">Raum erstellen</button>
+        <input id="roomInput" maxlength="8" placeholder="Raumcode (z.B. AB12CD)" />
+        <button id="joinBtn">Beitreten</button>
+      </div>
+
+      <div class="muted small">
+        Tipp: Einer erstellt den Raum und sagt den Code der Klasse.
+      </div>
+      <div id="lobbyMsg" class="msg"></div>
+    </section>
+
+    <section id="gameWrap" class="hidden">
+      <canvas id="game" width="960" height="540"></canvas>
+
+      <div id="hud" class="hud">
+        <div class="hud-left">
+          <div id="roomLabel" class="pill"></div>
+          <div id="chapterLabel" class="pill"></div>
+        </div>
+        <div class="hud-right">
+          <button id="leaveBtn" class="ghost">Verlassen</button>
+        </div>
+      </div>
+
+      <div id="toast" class="toast hidden"></div>
+
+      <div id="modalBackdrop" class="modal-backdrop hidden">
+        <div id="modal" class="modal">
+          <div id="modalTitle" class="modal-title"></div>
+          <div id="modalBody" class="modal-body"></div>
+          <div id="modalActions" class="modal-actions"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
