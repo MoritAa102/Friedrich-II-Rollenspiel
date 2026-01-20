@@ -1,128 +1,66 @@
+// Team-Puzzle: Jeder Spieler bekommt eine ROLLE (eigenes Infokärtchen + eigener Code).
+// Nur wenn ALLE online Spieler ihren Code korrekt abgeben, geht es weiter.
+
 export const MISSIONS = [
   {
     id: 0,
-    title: "Kapitel 1: Kronprinz & Konflikt",
-    info: [
-      "Friedrich II (1712–1786) wuchs am preußischen Hof unter strenger Militärdisziplin auf.",
-      "Sein Vater (Friedrich Wilhelm I.) wollte einen „Soldatenkönig“-Stil – Friedrich interessierte sich stärker für Musik/Philosophie.",
-      "Das prägte später seinen Regierungsstil: militärisch effektiv, aber auch aufklärerisch interessiert."
+    title: "Kapitel 1: Bauernbefreiung & Leibeigenschaft",
+    chapterIntro: [
+      "Nach dem Ende des Siebenjährigen Krieges (1763) ordnete Friedrich an, die Leibeigenschaft abzuschaffen – in der Praxis ging das aber langsam.",
+      "Im Text wird betont, wie zäh Reformen vorankamen und wie komplex das Thema war."
     ],
-    quiz: {
-      q: "Was beschreibt den Konflikt in Friedrichs Jugend am besten?",
-      options: [
-        "Er wollte Seefahrer werden, sein Vater verbot das.",
-        "Er hatte andere Interessen (Kunst/Philosophie) als die strenge Militärlinie seines Vaters.",
-        "Er wollte nur Bauer sein und verließ Berlin.",
-        "Er lebte nie am Hof, sondern im Ausland."
-      ],
-      correctIndex: 1
-    },
-    unlockGateId: "gate1",
-    npcHint: "Sprich mit der Station „Hof“ (E)."
+    roles: [
+      { label: "Chronist", info: "Merke dir das Jahr der Anordnung nach dem Siebenjährigen Krieg.", answer: "1763" },
+      { label: "Reformprüfer", info: "Merke dir das Jahr, das im Text als wichtiger juristischer Einschnitt in Preußen genannt wird.", answer: "1807" },
+      { label: "Vergleich (Österreich)", info: "Merke dir das Jahr, in dem in Österreich die Leibeigenschaft (auf Gütern) abgeschafft wurde.", answer: "1773" },
+      { label: "Untertanen-Hinweis", info: "Merke dir das Jahr des „Untertanenpatents“ (im Text erwähnt).", answer: "1781" }
+    ],
+    npcName: "Bauern & Land",
+    unlockGateId: "gate1"
   },
   {
     id: 1,
-    title: "Kapitel 2: Schlesien & Machtpolitik",
-    info: [
-      "Als König nutzte Friedrich Chancen, um Preußens Macht auszubauen.",
-      "Schlesien war wirtschaftlich wichtig (Bevölkerung, Ressourcen, Steuern).",
-      "Politik + Militär gingen bei ihm oft Hand in Hand."
+    title: "Kapitel 2: Justiz & Folter",
+    chapterIntro: [
+      "Friedrich wollte Folter zurückdrängen. Im Text steht: Er begann 1740 mit Bemühungen, und es gab spätere Regelungen (bis hin zu einer Kriminalordnung).",
+      "Es wird auch beschrieben, warum Folter trotz Reformen noch länger nachwirkte."
     ],
-    quiz: {
-      q: "Warum war Schlesien für Preußen besonders attraktiv?",
-      options: [
-        "Weil dort die Hauptstadt Wien liegt.",
-        "Weil es wirtschaftlich und demografisch wichtig war.",
-        "Weil es nur aus Wüste bestand.",
-        "Weil es völlig unbewohnt war."
-      ],
-      correctIndex: 1
-    },
-    unlockGateId: "gate2",
-    npcHint: "Station „Schlesien“ (E)."
+    roles: [
+      { label: "Akte 1740", info: "Merke dir: In welchem Jahr begannen die Folter-Bemühungen laut Text?", answer: "1740" },
+      { label: "Kriminalordnung", info: "Merke dir das Jahr der „Kriminalordnung“, die im Text erwähnt wird.", answer: "1805" },
+      { label: "Vergleich Bayern", info: "Merke dir das Jahr, in dem in Bayern die Folter abgeschafft wurde (im Text genannt).", answer: "1806" }
+    ],
+    npcName: "Justiz",
+    unlockGateId: "gate2"
   },
   {
     id: 2,
-    title: "Kapitel 3: Sanssouci & Aufklärung",
-    info: [
-      "Friedrich förderte Kultur und diskutierte mit Denkern der Aufklärung.",
-      "Sanssouci (Potsdam) steht als Symbol für seine Rolle als „Philosophenkönig“.",
-      "Er nutzte Ideen der Aufklärung, solange sie dem Staat nützten."
+    title: "Kapitel 3: Bildung & Verwaltung",
+    chapterIntro: [
+      "Im Text: Schulwesen in Preußen wurde reformiert; Bauernkinder sollten nur das Nötigste lernen.",
+      "Wichtiges Datum: Einrichtung des Ober-Schulkollegiums."
     ],
-    quiz: {
-      q: "Wofür steht Sanssouci im Zusammenhang mit Friedrich II?",
-      options: [
-        "Für seine Seeflotte.",
-        "Für seine Kultur-/Aufklärungsrolle und Hofkultur.",
-        "Für einen Bergbaukonzern.",
-        "Für seine Erfindung des Buchdrucks."
-      ],
-      correctIndex: 1
-    },
-    unlockGateId: "gate3",
-    npcHint: "Station „Sanssouci“ (E)."
+    roles: [
+      { label: "Schulreform-Datum", info: "Merke dir: In welchem Jahr wurde das Ober-Schulkollegium eingerichtet?", answer: "1787" },
+      { label: "Ziel der Schule", info: "Der Text: Bauernkinder sollten in Schulen vor allem …? Antworte mit einem Wort.", answer: "Nötigste" }
+    ],
+    npcName: "Schule",
+    unlockGateId: "gate3"
   },
   {
     id: 3,
-    title: "Kapitel 4: Siebenjähriger Krieg",
-    info: [
-      "Der Siebenjährige Krieg zeigte Preußens Verwundbarkeit – aber auch Friedrichs Durchhaltewillen.",
-      "Er setzte auf schnelle Entscheidungen und Mobilität.",
-      "Am Ende blieb Preußen eine europäische Großmacht."
+    title: "Kapitel 4: Bürokratie, Gesetze & Müller-Arnold",
+    chapterIntro: [
+      "Bürokratie diente als Instrument gegen aristokratische Willkür – in Preußen blieb aber vieles beim Adel.",
+      "Fall Müller Arnold: Friedrich greift ein, was als „gerecht“ gefeiert, aber auch als Eingriff kritisiert wird.",
+      "Im Text: AGB 1791, später 1794 Allgemeines Landrecht (Revision)."
     ],
-    quiz: {
-      q: "Was passt am besten zum Siebenjährigen Krieg aus preußischer Sicht?",
-      options: [
-        "Preußen war nie bedroht.",
-        "Es war eine harte Krise, aber Preußen behauptete sich als Großmacht.",
-        "Es war ein Sportturnier.",
-        "Er fand ausschließlich in Amerika statt."
-      ],
-      correctIndex: 1
-    },
-    unlockGateId: "gate4",
-    npcHint: "Station „Krieg“ (E)."
-  },
-  {
-    id: 4,
-    title: "Kapitel 5: Reformen & Verwaltung",
-    info: [
-      "Friedrich reformierte Verwaltung und Justiz, um den Staat effizienter zu machen.",
-      "Religionspolitik: vergleichsweise tolerant (v. a. aus Staatsnutzen).",
-      "Ein starker, gut organisierter Staat war sein Kernziel."
+    roles: [
+      { label: "AGB-Jahr", info: "Merke dir: In welchem Jahr führte der Prozess zum Allgemeinen Gesetzbuch (AGB) für Preußen?", answer: "1791" },
+      { label: "Revision-Jahr", info: "Merke dir: In welchem Jahr wurde das Allgemeine Landrecht veröffentlicht (Revision)?", answer: "1794" },
+      { label: "Müller-Arnold", info: "Wie hieß der berühmte Fall im Text? Antworte genau mit: Müller …", answer: "Müllers Arnold" }
     ],
-    quiz: {
-      q: "Welches Ziel passt zu Friedrichs Reformpolitik?",
-      options: [
-        "Ein effizienter, gut organisierter Staat.",
-        "Ein Staat ohne Verwaltung und Gesetze.",
-        "Nur Theaterstücke finanzieren, sonst nichts.",
-        "Abschaffung aller Schulen."
-      ],
-      correctIndex: 0
-    },
-    unlockGateId: "gate5",
-    npcHint: "Station „Reformen“ (E)."
-  },
-  {
-    id: 5,
-    title: "Kapitel 6: Kartoffeln & Versorgung",
-    info: [
-      "Friedrich förderte Anbau/Versorgung, u. a. Kartoffeln (damals nicht überall beliebt).",
-      "Stabile Ernährung stärkte Bevölkerung, Armee und Wirtschaft.",
-      "Politik heißt auch: Krisen vorbeugen."
-    ],
-    quiz: {
-      q: "Warum war die Förderung von Kartoffeln (und Landwirtschaft) politisch sinnvoll?",
-      options: [
-        "Weil Kartoffeln Gold enthalten.",
-        "Weil bessere Versorgung Krisen verhindert und den Staat stärkt.",
-        "Weil Kartoffeln nur Deko sind.",
-        "Weil niemand essen musste."
-      ],
-      correctIndex: 1
-    },
-    unlockGateId: "gateEnd",
-    npcHint: "Station „Versorgung“ (E)."
+    npcName: "Kanzlei",
+    unlockGateId: "gateEnd"
   }
 ];
