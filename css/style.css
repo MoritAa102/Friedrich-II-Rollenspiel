@@ -1,6 +1,6 @@
 :root{
-  --bg:#0f1220;
-  --panel:#171a2b;
+  --bg:#0c0f18;
+  --panel:#161a2a;
   --text:#eef0ff;
   --muted:#a8aecb;
   --accent:#6ee7ff;
@@ -13,13 +13,14 @@
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; margin:0; background:var(--bg); color:var(--text); font-family:var(--font); }
+body{ overscroll-behavior:none; }
 #app{ min-height:100%; display:flex; flex-direction:column; }
 
 .topbar{
   display:flex; align-items:center; justify-content:space-between;
   padding:14px 18px; border-bottom:1px solid rgba(255,255,255,.06);
 }
-.title{ font-weight:700; letter-spacing:.2px; }
+.title{ font-weight:800; letter-spacing:.2px; }
 .pill{
   padding:6px 10px; border-radius:999px;
   background:rgba(255,255,255,.08);
@@ -37,8 +38,9 @@ html,body{ height:100%; margin:0; background:var(--bg); color:var(--text); font-
   box-shadow:var(--shadow);
 }
 h1{ margin:6px 0 10px; font-size:24px; }
+h2{ margin:6px 0 10px; font-size:20px; }
 label{ display:block; margin:12px 0; }
-input{
+input, select{
   width:100%; padding:12px 12px;
   border-radius:12px;
   border:1px solid rgba(255,255,255,.14);
@@ -55,19 +57,18 @@ button{
   background:rgba(110,231,255,.18);
   color:var(--text);
   cursor:pointer;
-  font-weight:700;
+  font-weight:800;
 }
 button:hover{ filter:brightness(1.08); }
-button.ghost{
-  background:transparent;
-}
+button.ghost{ background:transparent; }
+button.start{ background:rgba(125,255,178,.16); border-color:rgba(125,255,178,.35); }
 .muted{ color:var(--muted); }
 .small{ font-size:12px; }
 .msg{ margin-top:10px; min-height:18px; color:var(--accent); }
 .hidden{ display:none !important; }
 
 #gameWrap{
-  width:min(1000px, 96vw);
+  width:min(1100px, 96vw);
   margin:16px auto 22px;
   position:relative;
 }
@@ -78,19 +79,20 @@ canvas{
   border:1px solid rgba(255,255,255,.10);
   background:#0b0e18;
   box-shadow:var(--shadow);
+  touch-action:none; /* wichtig für iPad/Handy */
 }
 
 .hud{
   position:absolute; left:12px; right:12px; top:12px;
   display:flex; justify-content:space-between; pointer-events:none;
 }
-.hud-left,.hud-right{ display:flex; gap:8px; align-items:center; }
+.hud-left,.hud-right{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
 .hud-right button{ pointer-events:auto; }
 
 .toast{
   position:absolute; left:50%; transform:translateX(-50%);
   bottom:14px;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,.55);
   border:1px solid rgba(255,255,255,.14);
   padding:10px 12px; border-radius:12px;
   font-size:13px;
@@ -103,6 +105,26 @@ canvas{
   padding:14px;
 }
 .modal{
+  width:min(780px, 96vw);
+  background:var(--panel);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+.modal-title{ font-size:18px; font-weight:900; margin-bottom:8px; }
+.modal-body{ color:var(--text); line-height:1.45; }
+.modal-actions{ display:flex; gap:10px; justify-content:flex-end; margin-top:14px; flex-wrap:wrap; }
+.modal-actions button{ min-width:120px; }
+
+/* Room Lobby Overlay */
+.roomlobby{
+  position:absolute; inset:0;
+  background:rgba(0,0,0,.55);
+  display:flex; align-items:center; justify-content:center;
+  padding:14px;
+}
+.roomlobby-card{
   width:min(720px, 96vw);
   background:var(--panel);
   border:1px solid rgba(255,255,255,.12);
@@ -110,7 +132,113 @@ canvas{
   box-shadow:var(--shadow);
   padding:16px;
 }
-.modal-title{ font-size:18px; font-weight:800; margin-bottom:8px; }
-.modal-body{ color:var(--text); line-height:1.45; }
-.modal-actions{ display:flex; gap:10px; justify-content:flex-end; margin-top:14px; flex-wrap:wrap; }
-.modal-actions button{ min-width:120px; }
+.playerList{
+  margin-top:8px;
+  display:grid; gap:8px;
+  max-height:220px; overflow:auto;
+  padding-right:6px;
+}
+.playerLine{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 10px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.05);
+}
+.badge{
+  font-size:12px; padding:4px 8px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.25);
+}
+
+/* Avatar picker */
+.avatarBox{ margin-top:6px; }
+.avatarRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.avatarPick{
+  width:44px; height:44px;
+  border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  cursor:pointer;
+  user-select:none;
+  font-weight:900;
+}
+.avatarPick.active{ outline:2px solid rgba(110,231,255,.55); }
+
+/* Chat */
+.chat{
+  position:absolute;
+  right:12px; bottom:12px;
+  width:min(420px, 92vw);
+  height:min(360px, 55vh);
+  background:rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:16px;
+  display:flex; flex-direction:column;
+  overflow:hidden;
+  backdrop-filter: blur(8px);
+}
+.chat-head{
+  display:flex; gap:8px;
+  padding:10px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.chat-head select{ padding:10px; }
+.chat-msgs{
+  flex:1; overflow:auto;
+  padding:10px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.chatBubble{
+  max-width:92%;
+  padding:10px 10px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
+  font-size:13px;
+  line-height:1.35;
+}
+.chatBubble.me{ align-self:flex-end; background:rgba(110,231,255,.12); }
+.chatMeta{ font-size:11px; color:rgba(255,255,255,.65); margin-bottom:4px; }
+.chat-send{
+  display:flex; gap:8px;
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.chat-send input{ flex:1; }
+
+/* Touch Controls */
+.touch{
+  position:absolute; inset:0;
+  pointer-events:none;
+}
+.joy{
+  position:absolute;
+  left:14px; bottom:18px;
+  width:128px; height:128px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.25);
+  pointer-events:auto;
+  touch-action:none;
+}
+.joy-knob{
+  position:absolute;
+  left:50%; top:50%;
+  width:56px; height:56px;
+  transform:translate(-50%,-50%);
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(110,231,255,.16);
+}
+.touchRight{
+  position:absolute; right:14px; bottom:20px;
+  display:flex; flex-direction:column; gap:10px;
+  pointer-events:auto;
+}
+.touchBtn{
+  width:92px;
+  background:rgba(255,255,255,.10);
+  font-size:16px;
+}
