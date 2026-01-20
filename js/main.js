@@ -21,6 +21,7 @@ const firebaseConfig = {
   appId: "1:1052196901438:web:7d8424071a5b32e207376f"
 };
 
+
 initFirebase(firebaseConfig);
 
 const els = {
